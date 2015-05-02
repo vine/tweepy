@@ -14,8 +14,6 @@ if mo:
 else:
     raise RuntimeError("Unable to find version string in %s." % (VERSIONFILE,))
 
-install_reqs = parse_requirements('requirements.txt', session=uuid.uuid1())
-reqs = [str(req.req) for req in install_reqs]
 
 setup(name="tweepy",
       version=version,
@@ -25,7 +23,11 @@ setup(name="tweepy",
       author_email="tweepy@googlegroups.com",
       url="http://github.com/tweepy/tweepy",
       packages=find_packages(exclude=['tests']),
-      install_requires=reqs,
+      install_requires=[
+          'requests>=2.4.3',
+          'requests_oauthlib>=0.4.1',
+          'six>=1.7.3',
+      ],
       keywords="twitter library",
       classifiers=[
           'Development Status :: 4 - Beta',
